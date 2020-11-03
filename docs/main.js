@@ -59,7 +59,7 @@ class CameraComponent {
     }
 }
 CameraComponent.ɵfac = function CameraComponent_Factory(t) { return new (t || CameraComponent)(); };
-CameraComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CameraComponent, selectors: [["app-camera"]], decls: 9, vars: 1, consts: [["id", "photo"], ["id", "filter", "src", "assets/alpha-webm.webm", 3, "ngClass"], ["id", "video"], ["id", "picResult"], ["id", "canvas"], ["id", "snap"], ["id", "play"]], template: function CameraComponent_Template(rf, ctx) { if (rf & 1) {
+CameraComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CameraComponent, selectors: [["app-camera"]], decls: 9, vars: 1, consts: [["id", "photo"], ["id", "filter", "src", "./assets/alpha-webm.webm", 3, "ngClass"], ["id", "video"], ["id", "picResult"], ["id", "canvas"], ["id", "snap"], ["id", "play"]], template: function CameraComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "video", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "video", 2);
