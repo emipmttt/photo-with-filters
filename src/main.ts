@@ -8,5 +8,6 @@ if (environment.production) {
   enableProdMode();
 }
 
+import "@angular/compiler";
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
