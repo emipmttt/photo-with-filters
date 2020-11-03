@@ -3,10 +3,22 @@ video {
   height: 100vh
 }
 
-button {
+#snap {
   position: fixed;
   bottom: 10px;
   left: 50%;
+  border-radius: 50%;
+
+  width: 100px;
+  height: 100px;
+  background: red;
+  color: white
+}
+
+#play {
+  position: fixed;
+  bottom: 10px;
+  left: 60%;
   border-radius: 50%;
 
   width: 100px;
