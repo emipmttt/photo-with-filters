@@ -26,8 +26,8 @@ export class CameraComponent implements OnInit {
     }
 
     const snap = () => {
-      canvas.width = video.clientWidth
-      canvas.height = video.clientHeight
+      // canvas.width = video.clientWidth
+      // canvas.height = video.clientHeight
       context.drawImage(video, 0, 0)
       context.drawImage(filter, 0, 0)
       var pic = canvas.toDataURL("image/png");
