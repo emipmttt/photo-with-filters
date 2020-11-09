@@ -1,29 +1,21 @@
 <div class="app-container">
   <div class="app-container__photo">
-    <video id="filter" [ngClass]="'filter'" src="./assets/alpha-webm.webm"></video>
+    <div class="app-container__photo__img-container">
+      <img crossOrigin="Anonymous" id="filter" [ngClass]="'filter'" [src]="filters[filterSelected].url" />
+    </div>
     <video id="video"></video>
+    <div class="app-container__photo__snap-container">
+      <button id="snap">Snap</button>
+    </div>
+
   </div>
   <div class="app-container__controls">
-    <div class="app-container__controls__button">
-      <img src="https://image.freepik.com/vector-gratis/divertido-santa-claus-celebrando-navidad_74855-962.jpg">
-      <p>Santa Claus</p>
-    </div>
-    <div class="app-container__controls__button">
-      <img src="https://image.freepik.com/vector-gratis/divertido-santa-claus-celebrando-navidad_74855-962.jpg">
-      <p>Santa Claus</p>
-    </div>
-    <div class="app-container__controls__button">
-      <img src="https://image.freepik.com/vector-gratis/divertido-santa-claus-celebrando-navidad_74855-962.jpg">
-      <p>Santa Claus</p>
-    </div>
-    <div class="app-container__controls__button">
-      <img src="https://image.freepik.com/vector-gratis/divertido-santa-claus-celebrando-navidad_74855-962.jpg">
-      <p>Santa Claus</p>
+    <div (click)="putFilter(i)" *ngFor="let filter of filters; let i = index" class="app-container__controls__button">
+      <img [src]="filter.url">
+      <p>{{filter.title}}</p>
     </div>
   </div>
 </div>
-<!-- 
+<a id="link"></a>
 <div id="picResult"></div>
 <canvas id="canvas"></canvas>
-<button id="snap">Snap</button>
-<button id="play">Play</button> -->
