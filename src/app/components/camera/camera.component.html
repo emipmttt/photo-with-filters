@@ -3,7 +3,7 @@
     <div class="app-container__photo__img-container">
       <img draggable="false" crossOrigin="Anonymous" id="filter" [ngClass]="'filter'" [src]="filters[filterSelected].url" />
     </div>
-    <video playsinline controls id="video"></video>
+    <video controls id="video" webkit-playsinline="true" playsinline="true"></video>
     <div class="app-container__photo__snap-container">
       <button id="snap">Snap</button>
     </div>
