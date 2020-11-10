@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 #canvas {
   display: none
 }
@@ -16,6 +20,7 @@
       margin-top: -200px;
       text-align: center;
       position: relative;
+
 
       #snap {
         align-self: center;
@@ -50,6 +55,11 @@
     &__img-container {
       position: absolute;
       z-index: 1;
+
+      .filter {
+        width: 50vw
+      }
+
     }
   }
 
