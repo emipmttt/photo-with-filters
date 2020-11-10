@@ -91,6 +91,8 @@ export class CameraComponent implements OnInit {
       document.getElementById('filter').addEventListener('touchstart', mouseDown, false);
       window.addEventListener('mouseup', mouseUp, false);
       window.addEventListener('touchleave', mouseUp, false);
+
+      document.querySelector("#video").addEventListener('click', divMove)
     }
 
     function mouseUp() {
@@ -103,9 +105,9 @@ export class CameraComponent implements OnInit {
       window.addEventListener('touchmove', divMove, true);
     }
 
-    function divMove(e) {
-      console.log('move');
 
+
+    function divMove(e) {
       var div = document.getElementById('filter');
       div.style.position = 'absolute';
       div.style.top = e.clientY - (div.clientHeight / 2) + 'px';
