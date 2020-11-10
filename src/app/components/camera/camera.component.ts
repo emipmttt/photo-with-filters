@@ -38,7 +38,6 @@ export class CameraComponent implements OnInit {
     var context = canvas.getContext("2d");
 
     const streamWebCam = (stream: any) => {
-      alert("lel");
       video.srcObject = stream;
       video.play()
     }
@@ -66,10 +65,21 @@ export class CameraComponent implements OnInit {
 
     document.querySelector("#snap").addEventListener("click", snap)
 
-    navigator.getUserMedia({ video: true }, streamWebCam, throwError)
-    navigator.mediaDevices.getUserMedia({}).then(function (mediaStream) {
-      streamWebCam(mediaStream)
+    // navigator.getUserMedia({ video: true }, streamWebCam, throwError)
 
+    const constraints = { video: { facingMode: "user" }, audio: false }
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then(function (stream) {
+        // track = stream.getTracks()[0];
+        streamWebCam(stream)
+
+      })
+      .catch(function (error) {
+        console.error("Oops. Something is broken.", error);
+      });
+
+    navigator.mediaDevices.getUserMedia().then(function (mediaStream) {
     }).catch(throwError);
 
     // drag filter
