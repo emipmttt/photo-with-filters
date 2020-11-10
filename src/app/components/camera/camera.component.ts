@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import os from "../../../utils/os.js"
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.component.html',
@@ -66,13 +67,28 @@ export class CameraComponent implements OnInit {
         parseInt(filter.style.left.replace(/px/, "")) + filter.clientWidth,
         parseInt(filter.style.top.replace(/px/, "")) + filter.clientHeight);
 
+      const imageData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
 
-      var link = document.getElementById('link');
-      link.setAttribute('download', Date.now() + '.png');
-      link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
-      link.click();
+      if (os() == "iOS") {
 
-      canvas.style.display = "none"
+        console.log("ios");
+
+        var reader = new FileReader();
+        var out = new Blob([imageData], { type: 'image/png' });
+        reader.onload = function (e) {
+          location.href = reader.result as string;
+        }
+        reader.readAsDataURL(out);
+
+      } else {
+
+        var link = document.getElementById('link');
+        link.setAttribute('download', Date.now() + '.png');
+        link.setAttribute('href', imageData);
+        link.click();
+
+        canvas.style.display = "none"
+      }
 
     }
 
