@@ -52,7 +52,20 @@ export class CameraComponent implements OnInit {
       canvas.height = video.clientHeight
       context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight)
 
-      context.drawImage(filter, parseInt(filter.style.left.replace(/px/, "")), parseInt(filter.style.top.replace(/px/, "")))
+      context.drawImage(filter,
+        parseInt(filter.style.left.replace(/px/, "")),
+        parseInt(filter.style.top.replace(/px/, "")),
+        // parseInt(filter.style.left.replace(/px/, "")) + filter.clientWidth,
+        // parseInt(filter.style.top.replace(/px/, "")) + filter.clientHeight
+        filter.clientWidth,
+        filter.clientHeight
+      )
+
+      console.log(parseInt(filter.style.left.replace(/px/, "")),
+        parseInt(filter.style.top.replace(/px/, "")),
+        parseInt(filter.style.left.replace(/px/, "")) + filter.clientWidth,
+        parseInt(filter.style.top.replace(/px/, "")) + filter.clientHeight);
+
 
       var link = document.getElementById('link');
       link.setAttribute('download', Date.now() + '.png');
