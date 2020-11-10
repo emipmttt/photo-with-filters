@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Pao\Documents\projects\vmlyr\photo-with-filters\src\polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! /Users/macbook/Documents/proyectos/vmly&r/photo/src/polyfills.ts */"hN/g");
 
 
 /***/ }),

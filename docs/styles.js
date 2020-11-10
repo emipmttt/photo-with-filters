@@ -44,7 +44,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "/* You can add global styles to this file, and also import other style files */", "",{"version":3,"sources":["webpack://src/styles.scss"],"names":[],"mappings":"AAAA,8EAAA","sourcesContent":["/* You can add global styles to this file, and also import other style files */\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "/* You can add global styles to this file, and also import other style files */\n@font-face {\n  font-family: \"booksm\";\n  src: url('YRBookSmCap.otf');\n}\n* {\n  padding: 0px;\n  margin: 0px;\n  font-family: booksm;\n}", "",{"version":3,"sources":["webpack://src/styles.scss"],"names":[],"mappings":"AAAA,8EAAA;AAEA;EACE,qBAAA;EACA,2BAAA;AAAF;AAGA;EACE,YAAA;EACA,WAAA;EACA,mBAAA;AADF","sourcesContent":["/* You can add global styles to this file, and also import other style files */\n\n@font-face {\n  font-family: \"booksm\";\n  src: url(\"./assets/fonts/YRBookSmCap.otf\");\n}\n\n* {\n  padding: 0px;\n  margin: 0px;\n  font-family: booksm;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -58,7 +58,7 @@ ___CSS_LOADER_EXPORT___.push([module.i, "/* You can add global styles to this fi
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Pao\Documents\projects\vmlyr\photo-with-filters\src\styles.scss */"+EN/");
+module.exports = __webpack_require__(/*! /Users/macbook/Documents/proyectos/vmly&r/photo/src/styles.scss */"+EN/");
 
 
 /***/ }),

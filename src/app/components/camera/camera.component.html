@@ -1,7 +1,7 @@
 <div class="app-container">
   <div class="app-container__photo">
     <div class="app-container__photo__img-container">
-      <img crossOrigin="Anonymous" id="filter" [ngClass]="'filter'" [src]="filters[filterSelected].url" />
+      <img draggable="false" crossOrigin="Anonymous" id="filter" [ngClass]="'filter'" [src]="filters[filterSelected].url" />
     </div>
     <video id="video"></video>
     <div class="app-container__photo__snap-container">
