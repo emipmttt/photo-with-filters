@@ -27,6 +27,8 @@ export class CameraComponent implements OnInit {
   pulsed = false
   unselectable = false
 
+  alertMessage = ""
+
   putFilter(index) {
     this.filterSelected = index
   }
@@ -73,18 +75,29 @@ export class CameraComponent implements OnInit {
 
         console.log("ios");
 
-        var reader = new FileReader();
-        var out = new Blob([imageData], { type: 'image/png' });
-        reader.onload = function (e) {
-          location.href = reader.result as string;
-        }
-        reader.readAsDataURL(out);
+        canvas.toBlob((blob => {
+
+          console.log(blob);
+
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            var link = document.getElementById('link');
+            link.setAttribute('download', Date.now() + '.png');
+            // link.setAttribute('href', reader.result.replace("image/png", "image/octet-stream"));
+            link.click();
+          }
+          reader.readAsDataURL(blob);
+
+        }))
 
       } else {
 
+        // console.log(canvas.toDataURL())
+
         var link = document.getElementById('link');
-        link.setAttribute('download', Date.now() + '.png');
-        link.setAttribute('href', imageData);
+        // link.setAttribute('download', Date.now() + '.png');
+        link.setAttribute('href', canvas.toDataURL());
         link.click();
 
         canvas.style.display = "none"
@@ -95,21 +108,22 @@ export class CameraComponent implements OnInit {
     document.querySelector("#snap").addEventListener("click", snap)
 
     // navigator.getUserMedia({ video: true }, streamWebCam, throwError)
-
+    var vm = this;
     const constraints = { video: { facingMode: "user" }, audio: false }
     navigator.mediaDevices
       .getUserMedia(constraints)
       .then(function (stream) {
         // track = stream.getTracks()[0];
         streamWebCam(stream)
-
+        vm.alertMessage = ""
       })
       .catch(function (error) {
+        vm.alertMessage = "No pudimos acceder a tu camara :("
         console.error("Oops. Something is broken.", error);
       });
 
-    navigator.mediaDevices.getUserMedia().then(function (mediaStream) {
-    }).catch(throwError);
+    // navigator.mediaDevices.getUserMedia().then(function (mediaStream) {
+    // }).catch(throwError);
 
     // drag filter
 
@@ -133,8 +147,6 @@ export class CameraComponent implements OnInit {
       window.addEventListener('mousemove', divMove, true);
       window.addEventListener('touchmove', divMove, true);
     }
-
-
 
     function divMove(e) {
       var div = document.getElementById('filter');
