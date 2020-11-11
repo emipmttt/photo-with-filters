@@ -33,6 +33,8 @@ export class CameraComponent implements OnInit {
     this.filterSelected = index
   }
 
+  currentStream: any;
+
   ngOnInit(): void {
 
     var video = <HTMLVideoElement>document.getElementById("video")
@@ -42,7 +44,7 @@ export class CameraComponent implements OnInit {
 
     const streamWebCam = (stream: any) => {
       console.log(stream.active);
-
+      this.currentStream = stream;
       if (stream) {
 
         video.srcObject = stream;
@@ -121,11 +123,15 @@ export class CameraComponent implements OnInit {
     navigator.mediaDevices
       .getUserMedia(constraints)
       .then(function (stream) {
-        var track = stream.getTracks()[0];
 
-        track.addEventListener('ended', () => {
-          vm.alertMessage = "No pudimos acceder a tu camara :("
-        })
+        stream.getTracks().forEach(track => {
+          track.addEventListener('stop', () => {
+            vm.alertMessage = "No pudimos acceder a tu camara :("
+
+          })
+        });
+
+
         streamWebCam(stream)
         vm.alertMessage = ""
       })
