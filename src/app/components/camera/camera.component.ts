@@ -41,7 +41,12 @@ export class CameraComponent implements OnInit {
     var context = canvas.getContext("2d");
 
     const streamWebCam = (stream: any) => {
-      video.srcObject = stream;
+      if (stream) {
+        video.srcObject = stream;
+        vm.alertMessage = ""
+      } else {
+        vm.alertMessage = "No pudimos acceder a tu camara :("
+      }
       video.play()
     }
 
