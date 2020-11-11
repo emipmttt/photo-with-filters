@@ -82,6 +82,7 @@ class CameraComponent {
         var canvas = document.getElementById("canvas");
         var context = canvas.getContext("2d");
         const streamWebCam = (stream) => {
+            console.log(stream.active);
             if (stream) {
                 video.srcObject = stream;
                 vm.alertMessage = "";
@@ -135,7 +136,10 @@ class CameraComponent {
         navigator.mediaDevices
             .getUserMedia(constraints)
             .then(function (stream) {
-            // track = stream.getTracks()[0];
+            var track = stream.getTracks()[0];
+            track.addEventListener('ended', () => {
+                vm.alertMessage = "No pudimos acceder a tu camara :(";
+            });
             streamWebCam(stream);
             vm.alertMessage = "";
         })
