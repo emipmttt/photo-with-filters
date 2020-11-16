@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import os from "../../../utils/os.js"
+
+import api from "../../../services/api";
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.component.html',
@@ -43,15 +44,6 @@ export class CameraComponent implements OnInit {
     var context = canvas.getContext("2d");
 
     const streamWebCam = (stream: any) => {
-      console.log(stream);
-
-      stream.onactive = () => {
-        console.log('lel');
-      }
-
-      video.ontoggle = () => {
-        console.log('lel');
-      }
 
       this.currentStream = stream;
       if (stream) {
@@ -68,7 +60,7 @@ export class CameraComponent implements OnInit {
       console.log(e);
     }
 
-    const snap = () => {
+    const snap = async () => {
       canvas.style.display = "initial"
       canvas.width = video.clientWidth
       canvas.height = video.clientHeight
@@ -88,39 +80,53 @@ export class CameraComponent implements OnInit {
         parseInt(filter.style.left.replace(/px/, "")) + filter.clientWidth,
         parseInt(filter.style.top.replace(/px/, "")) + filter.clientHeight);
 
-      const imageData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
+      const imageData = canvas.toDataURL("image/png")
 
-      if (os() == "iOS") {
+      const response = await api.post("/file", {
+        image: imageData
+      })
 
-        console.log("ios");
+      const audioPath = 'http://localhost:3000' + response.data.data.replace(/storage/g, "")
 
-        canvas.toBlob((blob => {
+      console.log(audioPath);
+      console.log(response.data.data.replace(/storage/g, ""));
+      console.log(response.data);
 
-          console.log(blob);
 
-          var reader = new FileReader();
+      var link = document.getElementById('link');
+      link.setAttribute('href', audioPath);
+      link.setAttribute('target', "_blank");
+      link.click();
 
-          reader.onload = function (e) {
-            var link = document.getElementById('link');
-            link.setAttribute('download', Date.now() + '.png');
-            // link.setAttribute('href', reader.result.replace("image/png", "image/octet-stream"));
-            // link.click();
-          }
-          reader.readAsDataURL(blob);
+      // if (os() == "iOS") {
 
-        }))
+      //   console.log("ios");
 
-      } else {
+      //   canvas.toBlob((blob => {
 
-        // console.log(canvas.toDataURL())
+      //     console.log(blob);
 
-        var link = document.getElementById('link');
-        // link.setAttribute('download', Date.now() + '.png');
-        link.setAttribute('href', canvas.toDataURL());
-        // link.click();
+      //     var reader = new FileReader();
 
-        canvas.style.display = "none"
-      }
+      //     reader.onload = function (e) {
+      //       var link = document.getElementById('link');
+      //       link.setAttribute('download', Date.now() + '.png');
+      //       // link.setAttribute('href', reader.result.replace("image/png", "image/octet-stream"));
+      //       // link.click();
+      //     }
+      //     reader.readAsDataURL(blob);
+
+      //   }))
+
+      // } else {
+
+      //   var link = document.getElementById('link');
+      //   // link.setAttribute('download', Date.now() + '.png');
+      //   link.setAttribute('href', canvas.toDataURL());
+      //   // link.click();
+
+      //   canvas.style.display = "none"
+      // }
 
     }
 
@@ -132,15 +138,6 @@ export class CameraComponent implements OnInit {
     navigator.mediaDevices
       .getUserMedia(constraints)
       .then(function (stream) {
-
-        stream.getTracks().forEach(track => {
-          track.addEventListener('stop', () => {
-            vm.alertMessage = "No pudimos acceder a tu camara :("
-
-          })
-        });
-
-
         streamWebCam(stream)
         vm.alertMessage = ""
       })
