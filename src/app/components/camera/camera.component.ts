@@ -37,6 +37,8 @@ export class CameraComponent implements OnInit {
 
   removeUrlPhoto = () => {
     this.urlPhoto = ""
+    window.scrollTo(0, 0)
+
   }
 
   currentStream: any;
