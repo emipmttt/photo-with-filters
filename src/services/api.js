@@ -1,6 +1,5 @@
 import axios from "axios"
 
 export default axios.create({
-    baseURL: 'http://localhost:3000',
+  baseURL: 'https://photo-filter-backend.herokuapp.com/',
 })
-
