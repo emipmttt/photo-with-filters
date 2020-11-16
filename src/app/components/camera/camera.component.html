@@ -1,26 +1,37 @@
-<div class="app-container">
-  <div class="app-container__photo">
-    <div class="app-container__photo__img-container">
-      <img draggable="false" crossOrigin="Anonymous" id="filter" style="left: 0px; top:0px" [ngClass]="'filter'" [src]="filters[filterSelected].url" />
-    </div>
-    <div class="app-container__photo__snap-container">
-      <button id="snap">Snap</button>
-    </div>
-    <video id="video" webkit-playsinline="true" playsinline="true"></video>
+<div id="app_height">
+  <div class="app-container">
+    <div class="app-container__photo">
+      <div class="app-container__photo__img-container">
+        <img draggable="false" crossOrigin="Anonymous" id="filter" style="left: 0px; top:0px" [ngClass]="'filter'" [src]="filters[filterSelected].url" />
+      </div>
+      <div class="app-container__photo__snap-container">
+        <button id="snap">Snap</button>
+      </div>
+      <video id="video" webkit-playsinline="true" playsinline="true"></video>
 
 
+    </div>
+    <div class="app-container__controls">
+      <div (click)="putFilter(i)" *ngFor="let filter of filters; let i = index" class="app-container__controls__button">
+        <img [src]="filter.url">
+        <p>{{filter.title}}</p>
+      </div>
+    </div>
   </div>
-  <div class="app-container__controls">
-    <div (click)="putFilter(i)" *ngFor="let filter of filters; let i = index" class="app-container__controls__button">
-      <img [src]="filter.url">
-      <p>{{filter.title}}</p>
+  <a id="link"></a>
+  <div id="picResult"></div>
+  <canvas id="canvas"></canvas>
+
+  <div *ngIf="alertMessage" class="alert">
+    {{alertMessage}}
+  </div>
+  <div *ngIf="urlPhoto" class="alert">
+    <div>
+      <a [href]="urlPhoto" target="_blank">Descargar</a>
+      <br>
+      <br>
+      <div (click)="removeUrlPhoto()">Volver a la Camara</div>
     </div>
   </div>
-</div>
-<a id="link"></a>
-<div id="picResult"></div>
-<canvas id="canvas"></canvas>
 
-<div *ngIf="alertMessage" class="alert">
-  {{alertMessage}}
 </div>

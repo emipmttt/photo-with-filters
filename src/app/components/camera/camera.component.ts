@@ -13,11 +13,11 @@ export class CameraComponent implements OnInit {
   filters = [
     {
       title: "Santa Claus",
-      url: "https://media.tenor.com/images/8b360df95045a73b283fab18cdda9ea7/tenor.gif"
+      url: "../../assets/img/s1.gif"
     },
     {
       title: "Santa Claus",
-      url: "https://media.tenor.com/images/cd870e19bed53868c0419ad65bdbbdf9/tenor.gif"
+      url: "../../assets/img/s1.gif"
     }
   ]
 
@@ -29,9 +29,14 @@ export class CameraComponent implements OnInit {
   unselectable = false
 
   alertMessage = ""
+  urlPhoto = ""
 
   putFilter(index) {
     this.filterSelected = index
+  }
+
+  removeUrlPhoto = () => {
+    this.urlPhoto = ""
   }
 
   currentStream: any;
@@ -75,6 +80,9 @@ export class CameraComponent implements OnInit {
         filter.clientHeight
       )
 
+      let bodyHeight = document.querySelector("body").clientHeight
+
+      window.scrollTo(0, document.querySelector("video").clientHeight * 2)
       console.log(parseInt(filter.style.left.replace(/px/, "")),
         parseInt(filter.style.top.replace(/px/, "")),
         parseInt(filter.style.left.replace(/px/, "")) + filter.clientWidth,
@@ -93,12 +101,13 @@ export class CameraComponent implements OnInit {
       console.log(response.data);
 
       try {
+        // var link = document.getElementById('link');
+        // link.setAttribute('href', audioPath);
+        // link.setAttribute('target', "_blank");
+        // link.click();
 
-        var link = document.getElementById('link');
-        link.setAttribute('href', audioPath);
-        link.setAttribute('target', "_blank");
-        link.click();
-
+        this.urlPhoto = audioPath
+        // window.open(audioPath, "_taget")
       } catch (error) {
         console.log(error);
 
