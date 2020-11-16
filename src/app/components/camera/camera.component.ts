@@ -13,11 +13,11 @@ export class CameraComponent implements OnInit {
   filters = [
     {
       title: "Santa Claus",
-      url: "../../assets/img/s1.gif"
+      url: "assets/img/s1.gif"
     },
     {
       title: "Santa Claus",
-      url: "../../assets/img/s1.gif"
+      url: "assets/img/s1.gif"
     }
   ]
 

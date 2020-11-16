@@ -81,11 +81,11 @@ class CameraComponent {
         this.filters = [
             {
                 title: "Santa Claus",
-                url: "../../assets/img/s1.gif"
+                url: "assets/img/s1.gif"
             },
             {
                 title: "Santa Claus",
-                url: "../../assets/img/s1.gif"
+                url: "assets/img/s1.gif"
             }
         ];
         this.filterSelected = 0;
