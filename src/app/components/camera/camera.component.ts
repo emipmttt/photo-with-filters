@@ -92,11 +92,17 @@ export class CameraComponent implements OnInit {
       console.log(response.data.data.replace(/storage/g, ""));
       console.log(response.data);
 
+      try {
 
-      var link = document.getElementById('link');
-      link.setAttribute('href', audioPath);
-      link.setAttribute('target', "_blank");
-      link.click();
+        var link = document.getElementById('link');
+        link.setAttribute('href', audioPath);
+        link.setAttribute('target', "_blank");
+        link.click();
+
+      } catch (error) {
+        console.log(error);
+
+      }
 
       // if (os() == "iOS") {
 

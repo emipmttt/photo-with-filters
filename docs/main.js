@@ -115,10 +115,15 @@ class CameraComponent {
             console.log(audioPath);
             console.log(response.data.data.replace(/storage/g, ""));
             console.log(response.data);
-            var link = document.getElementById('link');
-            link.setAttribute('href', audioPath);
-            link.setAttribute('target', "_blank");
-            link.click();
+            try {
+                var link = document.getElementById('link');
+                link.setAttribute('href', audioPath);
+                link.setAttribute('target', "_blank");
+                link.click();
+            }
+            catch (error) {
+                console.log(error);
+            }
             // if (os() == "iOS") {
             //   console.log("ios");
             //   canvas.toBlob((blob => {
