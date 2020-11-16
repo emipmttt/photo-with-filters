@@ -111,7 +111,7 @@ class CameraComponent {
             const response = yield _services_api__WEBPACK_IMPORTED_MODULE_2__["default"].post("/file", {
                 image: imageData
             });
-            const audioPath = 'http://localhost:3000' + response.data.data.replace(/storage/g, "");
+            const audioPath = 'https://photo-filter-backend.herokuapp.com' + response.data.data.replace(/storage/g, "");
             console.log(audioPath);
             console.log(response.data.data.replace(/storage/g, ""));
             console.log(response.data);
