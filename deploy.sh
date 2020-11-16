@@ -1,4 +1,4 @@
 npm run build
 git add .
-git commit -m "test/ commit to test"
+git commit -m $1
 git push origin master

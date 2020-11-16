@@ -43,7 +43,16 @@ export class CameraComponent implements OnInit {
     var context = canvas.getContext("2d");
 
     const streamWebCam = (stream: any) => {
-      console.log(stream.active);
+      console.log(stream);
+
+      stream.onactive = () => {
+        console.log('lel');
+      }
+
+      video.ontoggle = () => {
+        console.log('lel');
+      }
+
       this.currentStream = stream;
       if (stream) {
 
@@ -95,7 +104,7 @@ export class CameraComponent implements OnInit {
             var link = document.getElementById('link');
             link.setAttribute('download', Date.now() + '.png');
             // link.setAttribute('href', reader.result.replace("image/png", "image/octet-stream"));
-            link.click();
+            // link.click();
           }
           reader.readAsDataURL(blob);
 
@@ -108,7 +117,7 @@ export class CameraComponent implements OnInit {
         var link = document.getElementById('link');
         // link.setAttribute('download', Date.now() + '.png');
         link.setAttribute('href', canvas.toDataURL());
-        link.click();
+        // link.click();
 
         canvas.style.display = "none"
       }
